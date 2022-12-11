@@ -1,0 +1,84 @@
+---
+layout: default
+permalink: /vscode/release-notes-:title
+---
+
+{% unless page.released %}
+  <div class="alert alert-warning">
+    Apache Daffodil VS Code Extension {{ page.title }} has not yet been released! The artifact
+    and release notes below are drafts for a proposed release of Apache
+    Daffodil VS Code Extension which has not yet occurred.
+  </div>
+{% endunless %}
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Get Release</h3>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#download">Download</a></li>
+      <li><a data-toggle="tab" href="#vscodemarketplace">VS Code Marketplace</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="download" class="tab-pane fade in active">
+        {% if page.source-dist %}
+          {% if page.apache %} {% assign prefix = "src/" %} {% endif %}
+          <h4>Source</h4>
+          <p>
+          {% include download-list.html
+             version=page.title
+             artifacts=page.source-dist
+             checksum-root=page.checksum-root
+             artifact-root=page.artifact-root
+             prefix=prefix
+          %}
+          </p>
+        {% endif %}
+
+        {% if page.binary-dist %}
+          {% if page.apache %} {% assign prefix = "bin/" %} {% endif %}
+          <h4>Binaries</h4>
+          <p>
+          {% include download-list.html
+             version=page.title
+             artifacts=page.binary-dist
+             checksum-root=page.checksum-root
+             artifact-root=page.artifact-root
+             prefix=prefix
+          %}
+          </p>
+        {% endif %}
+
+        {% if page.apache %}
+          <hr />
+          <p>
+            <i>
+              The above release files should be verified using the PGP signatures and the
+              <a href='{{ page.key-file }}'>project release KEYS</a>. See
+              <a href='https://www.apache.org/dyn/closer.cgi#verify'>verification instructions</a>
+              for a description of using the PGP and KEYS files for
+              verification. A SHA512 checksum is also provided as
+              an alternative verification method.
+            </i>
+          </p>
+        {% endif page.apache %}
+      </div>
+      <div id="vscodemarketplace" class="tab-pane fade">
+        <p>
+            This extension is available from the <a href="https://marketplace.visualstudio.com/items?itemName=ASF.apache-daffodil-vscode">VS Code Marketplace</a>.
+        </p>
+        <p>
+            To install from within VS Code, launch VS Code Quick Open (Ctrl+P), type the following command, and press enter.
+        </p>
+        <div style="padding: 0px 15px 10px 15px;">
+{% highlight text %}
+ext install ASF.apache-daffodil-vscode
+{% endhighlight %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 id="release-notes">Release Notes</h3>
+
+{{ content }}

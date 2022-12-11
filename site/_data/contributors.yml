@@ -1,0 +1,111 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to you under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- first: Josh
+  last: Adams
+  apacheId: jadams
+  githubId: jadams-tresys
+  role: PMC
+
+- first: Mike
+  last: Beckerle
+  apacheId: mbeckerle
+  githubId: mbeckerle
+  role: PMC (Chair)
+
+- first: Beth
+  last: Fahl
+  apacheId: efinnegan
+  githubId: efinnegan
+  role: Committer
+
+- first: Dave
+  last: Fisher
+  apacheId: wave
+  githubId: dave2wave
+  role: PMC
+
+- first: Steve
+  last: Lawrence
+  apacheId: slawrence
+  githubId: stevedlawrence
+  role: PMC
+
+- first: Brandon
+  last: Sloane
+  apacheId: btsloane
+  githubId: bsloane1650
+  role: PMC
+
+- first: Dave
+  last: Thompson
+  apacheId: dthompson
+  githubId: dfthompson
+  role: PMC
+
+- first: Taylor
+  last: Wise
+  apacheId: vtguy08
+  githubId: VTGuy
+  role: PMC
+
+- first: Christofer
+  last: Dutz
+  apacheId: cdutz
+  githubId: chrisdutz
+  role: PMC
+
+- first: Olabusayo
+  last: Kilo
+  apacheId: olabusayo
+  githubId: olabusayoT
+  role: PMC
+
+- first: John
+  last: Interrante
+  apacheId: jinterrante
+  githubId: tuxji
+  role: PMC
+
+- first: Kevin
+  last: Ratnasekera
+  apacheId: djkevincr
+  githubId: djkevincr
+  role: PMC
+
+- first: John
+  last: Wass
+  apacheId: jw3
+  githubId: jw3
+  role: PMC
+
+- first: Shane
+  last: Dell
+  apacheId: shanedell
+  githubId: shanedell
+  role: PMC
+
+- first: Adam
+  last: Rosien
+  apacheId: arosien
+  githubId: arosien
+  role: PMC
+
+- first: Davin
+  last: Shearer
+  apacheId: davin
+  githubId: scholarsmate
+  role: PMC
+

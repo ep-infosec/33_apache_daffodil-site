@@ -1,0 +1,134 @@
+---
+layout: default
+permalink: /release/release-notes-:title
+---
+
+{% unless page.released %}
+  <div class="alert alert-warning">
+    Apache Daffodil {{ page.title }} has not yet been released! The artifacts
+    and release notes below are drafts for a proposed release of Apache
+    Daffodil which has not yet occurred.
+  </div>
+{% endunless %}
+
+{% unless page.apache %}
+  <div class="alert alert-warning">
+    This release is from prior to Daffodil's acceptance into the Apache Software Foundation.
+    It is not an Apache Software Foundation release, and is licensed under the
+    <a href="https://opensource.org/licenses/NCSA">NCSA license</a>.
+  </div>
+{% endunless %}
+
+<div class="row">
+  <div class="col-md-3 text-right" style="float: right; z-index: 3;">
+    <h3>Documentation</h3>
+    <a href="/docs/{{ page.title }}/javadoc/">Javadoc</a> | <a href="/docs/{{ page.title }}/scaladoc/">Scaladoc</a>
+  </div>
+
+  <div class="col-md-12">
+    <h3>Get Release</h3>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#download">Download</a></li>
+      <li><a data-toggle="tab" href="#maven">Maven</a></li>
+      <li><a data-toggle="tab" href="#sbt">SBT</a></li>
+      <li><a data-toggle="tab" href="#rpm">DNF</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="download" class="tab-pane fade in active">
+        {% if page.source-dist %}
+          {% if page.apache %} {% assign prefix = "src/" %} {% endif %}
+          <h4>Source</h4>
+          <p>
+          {% include download-list.html
+             version=page.title
+             artifacts=page.source-dist
+             checksum-root=page.checksum-root
+             artifact-root=page.artifact-root
+             prefix=prefix
+          %}
+          </p>
+        {% endif %}
+
+        {% if page.binary-dist %}
+          {% if page.apache %} {% assign prefix = "bin/" %} {% endif %}
+          <h4>Binaries</h4>
+          <p>
+          {% include download-list.html
+             version=page.title
+             artifacts=page.binary-dist
+             checksum-root=page.checksum-root
+             artifact-root=page.artifact-root
+             prefix=prefix
+          %}
+          </p>
+        {% endif %}
+
+        {% if page.apache %}
+          <hr />
+          <p>
+            <i>
+              The above release files should be verified using the PGP signatures and the
+              <a href='{{ page.key-file }}'>project release KEYS</a>. See
+              <a href='https://www.apache.org/dyn/closer.cgi#verify'>verification instructions</a>
+              for a description of using the PGP and KEYS files for
+              verification. A SHA512 checksum is also provided as
+              an alternative verification method.
+            </i>
+          </p>
+        {% endif page.apache %}
+      </div>
+
+      <div id="maven" class="tab-pane fade">
+{% highlight xml %}
+<dependency>
+  <groupId>{% if page.apache %}org.apache.daffodil{% else %}edu.illinois.ncsa{% endif %}</groupId>
+  <artifactId>daffodil-japi_{{ page.scala-version }}</artifactId>
+  <version>{{ page.title }}</version>
+</dependency>
+{% unless page.apache %}
+<repository>
+  <id>ncsa-sonatype-releases</id>
+  <name>NCSA Sonatype Releases</name>
+  <url>https://opensource.ncsa.illinois.edu/nexus/content/repositories/releases</url>
+</repository>
+{% endunless %}
+{% endhighlight %}
+      </div>
+      <div id="sbt" class="tab-pane fade">
+{% highlight scala %}
+libraryDependencies += "{% if page.apache %}org.apache.daffodil{% else %}edu.illinois.ncsa{% endif %}" %% "daffodil-sapi" % "{{ page.title }}"
+{% unless page.apache %}
+resolvers += "NCSA Sonatype Releases" at "https://opensource.ncsa.illinois.edu/nexus/content/repositories/releases"
+{% endunless %}
+{% endhighlight %}
+      </div>
+      <div id="rpm" class="tab-pane fade">
+Create the file <code>/etc/yum.repos.d/apache-daffodil.repo</code> with the following content:
+
+<div style="padding: 10px 15px;">
+{% highlight ini %}
+[apache-daffodil]
+name=Apache Daffodil
+baseurl=https://apache.jfrog.io/artifactory/daffodil-rpm/
+enabled=1
+gpgkey=https://downloads.apache.org/daffodil/KEYS
+gpgcheck=1
+repo_gpgcheck=0
+{% endhighlight %}
+</div>
+
+Run the folllowing command:
+
+<div style="padding: 10px 15px;">
+{% highlight text %}
+sudo dnf install apache-daffodil
+{% endhighlight %}
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 id="release-notes">Release Notes</h3>
+
+{{ content }}
